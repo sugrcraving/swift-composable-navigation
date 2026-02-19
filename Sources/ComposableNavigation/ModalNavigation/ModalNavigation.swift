@@ -3,8 +3,10 @@ import ComposableArchitecture
 
 /// `ModalNavigation` models state and actions of a commonly used modal view presentation.
 /// Views can be presented with a certain style and dismissed.
-public struct ModalNavigation<Item: Equatable>: Reducer {
-	public init() {}
+public struct ModalNavigation<Item: Equatable>: Reducer
+    where Item: SendableMetatype {
+	
+    public init() {}
 	
 	public struct State: Equatable {
 		public var styledItem: StyledItem?
@@ -56,3 +58,7 @@ public struct ModalNavigation<Item: Equatable>: Reducer {
 		}
 	}
 }
+
+extension ModalNavigation.State: Sendable where Item: Sendable { }
+extension ModalNavigation.Action: Sendable where Item: Sendable { }
+extension ModalNavigation.StyledItem: Sendable where Item: Sendable { }

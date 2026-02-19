@@ -8,8 +8,10 @@ import ComposableArchitecture
 /// Additionally, it acts as the `UIAdaptivePresentationControllerDelegate` and automatically updates the state
 /// for pull-to-dismiss for views presented as a sheet.
 @MainActor
-public class ModalNavigationHandler<ViewProvider: ViewProviding>: NSObject, UIAdaptivePresentationControllerDelegate {
-	public typealias Item = ViewProvider.Item
+public class ModalNavigationHandler<ViewProvider: ViewProviding>: NSObject, UIAdaptivePresentationControllerDelegate
+    where ViewProvider.Item: SendableMetatype {
+	
+    public typealias Item = ViewProvider.Item
 	public typealias Navigation = ModalNavigation<Item>
 	
 	internal let viewStore: ViewStore<Navigation.State, Navigation.Action>

@@ -8,8 +8,9 @@ import ComposableArchitecture
 /// Additionally, it acts as the `UITabBarControllerDelegate` and automatically updates the state
 /// when the active tab is changed by the user.
 @MainActor
-public class TabNavigationHandler<ViewProvider: ViewProviding>: NSObject, UITabBarControllerDelegate {
-	public typealias Item = ViewProvider.Item
+public class TabNavigationHandler<ViewProvider: ViewProviding>: NSObject, UITabBarControllerDelegate where ViewProvider.Item: SendableMetatype {
+	
+    public typealias Item = ViewProvider.Item
 	public typealias Navigation = TabNavigation<Item>
 	
 	internal let viewStore: ViewStore<Navigation.State, Navigation.Action>

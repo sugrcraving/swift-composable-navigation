@@ -6,8 +6,10 @@ import OrderedCollections
 ///
 /// The active navigation item can be changed by setting a new item. Mutations to the items array
 /// are reflected as well (e.g. changing the tab order).
-public struct TabNavigation<Item: Equatable>: Reducer {
-	public init() {}
+public struct TabNavigation<Item: Equatable>: Reducer
+    where Item: SendableMetatype {
+	
+    public init() {}
 	
 	public struct State: Equatable {
 		public var items: [Item]
@@ -62,3 +64,6 @@ public struct TabNavigation<Item: Equatable>: Reducer {
 		state.activeItem = item
 	}
 }
+
+extension TabNavigation.State: Sendable where Item: Sendable { }
+extension TabNavigation.Action: Sendable where Item: Sendable { }

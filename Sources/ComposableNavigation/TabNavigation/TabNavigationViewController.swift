@@ -2,8 +2,10 @@ import UIKit
 import ComposableArchitecture
 
 /// A convenience UITabBarController implementation containing a `TabNavigationHandler`.
-public class TabNavigationViewController<ViewProvider: ViewProviding>: UITabBarController {
-	internal let navigationHandler: TabNavigationHandler<ViewProvider>
+public class TabNavigationViewController<ViewProvider: ViewProviding>: UITabBarController
+    where ViewProvider.Item: SendableMetatype {
+	
+    internal let navigationHandler: TabNavigationHandler<ViewProvider>
 	
 	public convenience init(
 		store: Store<TabNavigation<ViewProvider.Item>.State, TabNavigation<ViewProvider.Item>.Action>,
