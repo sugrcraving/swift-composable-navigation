@@ -3,8 +3,8 @@ import XCTest
 import ComposableArchitecture
 @testable import ComposableNavigation
 
+@MainActor
 class TabNavigationTests: XCTestCase {
-	@MainActor
 	func testSetActiveItem() async {
 		let store = makeStore(.init(items: [1, 2, 3], activeItem: 1))
 		
@@ -13,14 +13,12 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testSetActiveItemOutOfBounds() async {
 		let store = makeStore(.init(items: [1, 2, 3], activeItem: 1))
 		
 		await store.send(.setActiveItem(99))
 	}
 	
-	@MainActor
 	func testSetActiveIndex() async {
 		let store = makeStore(.init(items: [1, 2, 3], activeItem: 1))
 		
@@ -29,14 +27,12 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testSetActiveIndexOutOfBounds() async {
 		let store = makeStore(.init(items: [1, 2, 3], activeItem: 1))
 		
 		await store.send(.setActiveIndex(99))
 	}
 	
-	@MainActor
 	func testSetItems() async {
 		let store = makeStore(.init(items: [1, 2], activeItem: 1))
 		
@@ -45,7 +41,6 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testSetItemsFromEmpty() async {
 		let store = makeStore(.init(items: [], activeItem: 1))
 		
@@ -54,7 +49,6 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testSetSameItemsDifferentOrder() async {
 		let store = makeStore(.init(items: [1, 2, 3], activeItem: 1))
 		
@@ -63,7 +57,6 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testDisablingAnimation() async {
 		let store = makeStore(.init(items: [1, 2], activeItem: 1))
 		
@@ -72,7 +65,6 @@ class TabNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testDisablingAnimationAndSettingsItems() async {
 		let store = makeStore(.init(items: [1, 2], activeItem: 1))
 		

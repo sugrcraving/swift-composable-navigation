@@ -2,8 +2,10 @@ import UIKit
 import ComposableArchitecture
 
 /// A convenience UINavigationController implementation containing a `StackNavigationHandler`.
-public class StackNavigationViewController<ViewProvider: ViewProviding>: UINavigationController {
-	internal let navigationHandler: StackNavigationHandler<ViewProvider>
+public class StackNavigationViewController<ViewProvider: ViewProviding>: UINavigationController
+    where ViewProvider.Item: SendableMetatype {
+	
+    internal let navigationHandler: StackNavigationHandler<ViewProvider>
 	
 	public convenience init(
 		store: Store<StackNavigation<ViewProvider.Item>.State, StackNavigation<ViewProvider.Item>.Action>,

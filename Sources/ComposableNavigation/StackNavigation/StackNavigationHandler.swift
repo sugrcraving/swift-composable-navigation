@@ -7,8 +7,10 @@ import OrderedCollections
 ///
 /// It also supports automatic state updates for popping items via the leading-edge swipe gesture or the long press back-button menu.
 @MainActor
-public class StackNavigationHandler<ViewProvider: ViewProviding>: NSObject, UINavigationControllerDelegate {
-	public typealias Item = ViewProvider.Item
+public class StackNavigationHandler<ViewProvider: ViewProviding>: NSObject, UINavigationControllerDelegate
+    where ViewProvider.Item: SendableMetatype {
+	
+    public typealias Item = ViewProvider.Item
 	public typealias Navigation = StackNavigation<Item>
 	
 	internal let viewStore: ViewStore<Navigation.State, Navigation.Action>

@@ -2,6 +2,7 @@ import XCTest
 import ComposableArchitecture
 @testable import ComposableNavigation
 
+@MainActor
 class StoreCompactMapTest: XCTestCase {
 	func testCompactMapNonOptional() throws {
 		let store = Store<Int?, Void>(initialState: 12, reducer: { EmptyReducer() })

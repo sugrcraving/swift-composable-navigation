@@ -4,6 +4,7 @@ import SwiftUI
 @MainActor
 public protocol ViewProviding {
 	associatedtype Item: Hashable
+    
 	func makePresentable(for navigationItem: Item) -> Presentable
 }
 

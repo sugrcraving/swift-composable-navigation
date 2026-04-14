@@ -3,8 +3,8 @@ import XCTest
 import ComposableArchitecture
 @testable import ComposableNavigation
 
+@MainActor
 class ModalNavigationTests: XCTestCase {
-	@MainActor
 	func testPresentingFullScreenItem() async {
 		let store = makeStore(.init(styledItem: nil))
 		
@@ -13,7 +13,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testPresentingSheetItem() async {
 		let store = makeStore(.init(styledItem: nil))
 		
@@ -22,7 +21,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testSettingModalItem() async {
 		let store = makeStore(.init(styledItem: nil))
 		
@@ -31,7 +29,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testDismissingItem() async {
 		let store = makeStore(.init(styledItem: .init(item: 1, style: .pageSheet)))
 		
@@ -40,7 +37,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testDismissingWithoutItem() async {
 		let store = makeStore(.init(styledItem: nil))
 		store.exhaustivity = .off
@@ -50,7 +46,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testChangingStyle() async {
 		let store = makeStore(.init(styledItem: .init(item: 1, style: .pageSheet)))
 		
@@ -59,7 +54,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testChangingItem() async {
 		let store = makeStore(.init(styledItem: .init(item: 1, style: .pageSheet)))
 		
@@ -68,7 +62,6 @@ class ModalNavigationTests: XCTestCase {
 		}
 	}
 	
-	@MainActor
 	func testDisablingAnimation() async {
 		let store = makeStore(.init(styledItem: nil))
 		
